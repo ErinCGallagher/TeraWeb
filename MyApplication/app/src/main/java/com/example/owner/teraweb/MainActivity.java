@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +46,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //when clicked, if there is user webpage history, will go to last visited webpaged prior
+    public void goToURL(View view){
+        WebView myWebView = (WebView) findViewById(R.id.webview);
+        EditText urlEntry = (EditText)findViewById(R.id.urlBar);
+        String url = urlEntry.getText().toString();
+        if(!url.startsWith("www.")&& !url.startsWith("http://")){
+            url = "www."+url;
+        }
+        if(!url.startsWith("http://")){
+            url = "http://"+url;
+        }
+        myWebView.loadUrl(url);
+
     }
 
     //when clicked, if there is user webpage history, will go to previously viewed webpage
