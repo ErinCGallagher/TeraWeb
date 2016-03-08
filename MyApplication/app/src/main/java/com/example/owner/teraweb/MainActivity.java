@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,17 +20,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         WebView myWebView = (WebView) findViewById(R.id.webview);
-        myWebView.loadUrl("http://www.example.com");
+        myWebView.loadUrl("http://www.egallagher.com");
+        myWebView.setWebViewClient(new WebViewClient());
     }
 
     @Override
@@ -52,5 +45,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //when clicked, if there is user webpage history, will go to previously viewed webpage
+    public void historyBack(View view){
+        WebView myWebView = (WebView) findViewById(R.id.webview);
+        myWebView.goBack();
+    }
+
+    //when clicked, if there is user webpage history, will go to last visited webpaged prior
+    public void historyForward(View view){
+        WebView myWebView = (WebView) findViewById(R.id.webview);
+        myWebView.goForward();
     }
 }
